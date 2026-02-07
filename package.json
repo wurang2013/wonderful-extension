@@ -1,0 +1,86 @@
+{
+  "name": "wonderful-extension",
+  "displayName": "Wonderful Edge Tabs",
+  "publisher": "your-name",
+  "description": "Like Edge Vertical Tabs with manual grouping and categorizing.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-name/wonderful-extension"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:edge-tabs-view"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "edge-tabs-container",
+          "title": "Edge 标签管理",
+          "icon": "$(layers)"
+        }
+      ]
+    },
+    "views": {
+      "edge-tabs-container": [
+        {
+          "id": "edge-tabs-view",
+          "name": "已合并的标签页"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "edge-tabs-view.addToGroup",
+        "title": "移动到 Edge 分组",
+        "icon": "$(add)"
+      },
+      {
+        "command": "edge-tabs-view.removeFromGroup",
+        "title": "从 Edge 分组中移除",
+        "icon": "$(close)"
+      },
+      {
+        "command": "edge-tabs-view.openTab",
+        "title": "打开标签"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "edge-tabs-view.addToGroup",
+          "when": "view == edge-tabs-view && viewItem != 'folder'",
+          "group": "inline@1"
+        },
+        {
+          "command": "edge-tabs-view.removeFromGroup",
+          "when": "view == edge-tabs-view && viewItem != 'folder'",
+          "group": "inline@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "18.x",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0"
+  }
+}
