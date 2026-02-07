@@ -3,7 +3,7 @@
   "displayName": "Wonderful Edge Tabs",
   "publisher": "your-name",
   "description": "Like Edge Vertical Tabs with manual grouping and categorizing.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -51,19 +51,29 @@
       {
         "command": "edge-tabs-view.openTab",
         "title": "打开标签"
+      },
+      {
+        "command": "edge-tabs-view.deleteGroup",
+        "title": "删除此分组 (保留文件)",
+        "icon": "$(trash)"
       }
     ],
     "menus": {
       "view/item/context": [
         {
           "command": "edge-tabs-view.addToGroup",
-          "when": "view == edge-tabs-view && viewItem != 'folder'",
+          "when": "view == edge-tabs-view && viewItem == 'tabItem'",
           "group": "inline@1"
         },
         {
           "command": "edge-tabs-view.removeFromGroup",
-          "when": "view == edge-tabs-view && viewItem != 'folder'",
+          "when": "view == edge-tabs-view && viewItem == 'tabItem'",
           "group": "inline@2"
+        },
+        {
+          "command": "edge-tabs-view.deleteGroup",
+          "when": "view == edge-tabs-view && viewItem == 'customGroup'", 
+          "group": "inline"
         }
       ]
     }
